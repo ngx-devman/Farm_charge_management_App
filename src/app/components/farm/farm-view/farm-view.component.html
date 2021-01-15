@@ -1,0 +1,39 @@
+<h2>All Farms</h2>
+<div class="spinner-wrapper">
+    <mat-spinner *ngIf="loading"></mat-spinner>
+</div>
+
+<div *ngIf="farms.length > 0">
+    <table mat-table [dataSource]="farms" class="mat-elevation-z8">
+        <ng-container matColumnDef="no">
+            <th mat-header-cell *matHeaderCellDef> No </th>
+            <td mat-cell *matCellDef="let row; let i = index;"> {{i+1}} </td>
+        </ng-container>
+        <ng-container matColumnDef="area">
+            <th mat-header-cell *matHeaderCellDef> Area </th>
+            <td mat-cell *matCellDef="let element"> {{element.area}} </td>
+        </ng-container>
+        <ng-container matColumnDef="coordinates">
+            <th mat-header-cell *matHeaderCellDef> Coordinates </th>
+            <td mat-cell *matCellDef="let element"> 
+                <p *ngIf="element.coordinates.length === 0">No Coordinates</p>
+                <span *ngFor="let coord of element.coordinates; let j=index">
+                    <span *ngIf="j > 0">,</span>({{coord.latitude}}, {{coord.longitude}})
+                </span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="kaek">
+            <th mat-header-cell *matHeaderCellDef> Kaek </th>
+            <td mat-cell *matCellDef="let element"> {{element.kaek}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let row"> 
+                <button mat-raised-button color="primary" (click)="edit(row.kaek)">Edit</button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

@@ -1,0 +1,120 @@
+<h2>Create new user</h2>
+<form class="create-form" [formGroup]="createForm">
+    <div class="row item2">
+        <mat-form-field class="input-field">
+            <input matInput placeholder="Name" value="" formControlName="name" required>
+            <mat-error *ngIf="f.name.errors">
+                Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-field">
+            <input matInput placeholder="Surname" formControlName="surname" required>
+            <mat-error *ngIf="f.surname.errors">
+                Surname is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row item3">
+        <mat-form-field class="input-field">
+            <input matInput placeholder="Father Name" value="" formControlName="fatherName">
+        </mat-form-field>
+        <mat-form-field class="input-field">
+            <input matInput placeholder="Wife Name" formControlName="wifeName">
+        </mat-form-field>
+        <mat-form-field class="input-field">
+            <input matInput placeholder="Wife Father Surname" formControlName="wifeFatherSurname">
+        </mat-form-field>
+    </div>
+    <div class="row item2">
+        <mat-form-field class="input-field">
+            <input matInput [matDatepicker]="picker" placeholder="Birth Date" formControlName="birthDate" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="f.birthDate.errors">
+                BirthDate is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-field">
+            <input matInput placeholder="Birth Place" formControlName="birthPlace" required>
+            <mat-error *ngIf="f.birthPlace.errors">
+                Birth place is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row item3">
+        <mat-form-field class="input-field">
+            <input matInput placeholder="IdentityNumber" value="" formControlName="identityNumber" required>
+            <mat-error *ngIf="f.identityNumber.errors">
+                IdentityNumber is <strong>invalid</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-field">
+            <input matInput placeholder="AFM" formControlName="afm" required>
+            <mat-error *ngIf="f.afm.errors">
+                AFM is <strong>invalid</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-field">
+            <input matInput placeholder="DOY" formControlName="doy">
+        </mat-form-field>
+    </div>
+    <div class="row item2">
+        <mat-form-field class="input-field">
+            <input matInput placeholder="Email" value="" formControlName="email">
+            <mat-error *ngIf="f.email.errors">
+                Email is <strong>invalid</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-field">
+            <input matInput placeholder="Mobile" formControlName="mobile" required>
+            <mat-error *ngIf="f.mobile.errors">
+                Mobile is <strong>invalid</strong>
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row item2">
+        <mat-form-field class="input-field">
+            <input matInput placeholder="IBANS" value="" formControlName="ibans">
+            <mat-error *ngIf="f.ibans.errors">
+                IBANS is <strong>invalid</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-field">
+            <input matInput placeholder="Profession" formControlName="profession">
+        </mat-form-field>
+    </div>
+    <div class="row item2">
+        <mat-form-field class="input-field">
+            <input matInput placeholder="Address" value="" formControlName="address">
+            <mat-error *ngIf="f.address.errors">
+                Address is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-field">
+            <input matInput placeholder="PostCode" value="" formControlName="postCode">
+            <mat-error *ngIf="f.postCode.errors">
+                PostCode is <strong>invalid</strong>
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row item2">
+        <mat-form-field class="input-field">
+            <mat-label>City</mat-label>
+            <select matNativeControl formControlName="city" required>
+                <option *ngFor="let city of cityOptions" value="{{city}}">{{city}}</option>
+            </select>
+        </mat-form-field>
+        <mat-form-field class="input-field">
+            <mat-label>Canton</mat-label>
+            <select matNativeControl formControlName="canton" required>
+                <option *ngFor="let canton of cantonOptions" value="{{canton}}">{{canton}}</option>
+            </select>
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <button mat-flat-button color="accent" (click)="onCreate()">
+            <mat-spinner *ngIf="creating"></mat-spinner>
+            Create Customer
+        </button>
+    </div>
+</form>

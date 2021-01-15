@@ -1,0 +1,51 @@
+<h2>Edit Farm for {{kaek}}</h2>
+<form class="create-form" [formGroup]="createForm">
+    <div class="row item2">
+        <mat-form-field class="input-field">
+            <input matInput placeholder="Area" value="" formControlName="area" required type="number">
+            <mat-error *ngIf="f.area.errors">
+                Area is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-field">
+            <input matInput placeholder="Kaek" value="" formControlName="kaek" required>
+            <mat-error *ngIf="f.kaek.errors">
+                Kaek is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="coord-header">
+        <span class="ch-text">Coordinates</span>
+        <button mat-mini-fab (click)="addNewCoordinate()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <div formArrayName="coordinates">
+        <p *ngIf="coordArray.length == 0">No Coordinates Now.</p>
+        <div *ngIf="coordArray.length > 0">
+            <div *ngFor="let farm of coordArray.controls; let i=index" class="farm-container">
+                <div [formGroupName]="i" class="farm-wrapper">
+                    <div class="coord-wrapper item2">
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Latitude" value="{{dataSource.coordinates[i] ? dataSource.coordinates[i].latitude : 0}}" formControlName="latitude" required type="number">
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Longitude" value="{{dataSource.coordinates[i] ? dataSource.coordinates[i].longitude : '0'}}" formControlName="longitude" required type="number">
+                        </mat-form-field>
+                    </div>
+                    <button mat-mini-fab class="fab-close-coord" (click)="deleteCoordinate(i)">
+                        <mat-icon>clear</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="submit-wrapper">
+        <button mat-flat-button color="accent" (click)="onSave()" class="upload-btn" [disabled]="!createForm.valid || checkCoordinates">
+            <mat-spinner *ngIf="creating"></mat-spinner>
+            <span *ngIf="!creating">Edit Farm</span>
+        </button>
+        <button mat-flat-button color="accent" (click)="farmChargeView()">Charges</button>
+    </div>
+</form>

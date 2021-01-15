@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <div id="demo"></div>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <script>
+      new Vue({
+        el: "#demo",
+        template: `<h5>Add Fixed charge for {{afm}}</h5>
+
+<form class="save-form" [formgroup]="saveForm">
+  <p>
+    <mat-form-field>
+      <mat-label>kaek</mat-label>
+      <input matinput="" value="{{kaek}}" formcontrolname="kaek" required="" />
+      <mat-icon matsuffix="">sentiment_very_satisfied</mat-icon>
+      <mat-error *ngif="f.kaek.errors">
+        Kaek is <strong>required</strong></mat-error
+      >
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input
+        matinput=""
+        type="date"
+        value=""
+        formcontrolname="chargeDate"
+        required=""
+      />
+      <mat-icon matsuffix="">sentiment_very_satisfied</mat-icon>
+      <mat-error *ngif="f.chargeDate.errors"
+        >Date is <strong>required</strong></mat-error
+      >
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>amount</mat-label>
+      <input
+        matinput=""
+        type="text"
+        value="{{amount}}"
+        formcontrolname="amount"
+        required=""
+      />
+      <mat-icon matsuffix="">sentiment_very_satisfied</mat-icon>
+      <mat-error *ngif="f.amount.errors"
+        >amount is <strong>required</strong></mat-error
+      >
+    </mat-form-field>
+  </p>
+  <div class="submit-wrapper">
+    <button mat-flat-button="" color="accent" (click)="onSave()">
+      <mat-spinner *ngif="saving"></mat-spinner>
+      Save
+    </button>
+  </div>
+</form>
+`
+      });
+    </script>
+  </body>
+</html>

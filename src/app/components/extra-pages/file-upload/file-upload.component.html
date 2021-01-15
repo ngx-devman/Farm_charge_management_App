@@ -1,0 +1,34 @@
+<div class="center">
+    <ngx-file-drop dropZoneLabel="Drop files here"
+            [multiple]="fdMultiple" [disabled]="disableDrop"
+            (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)" (onFileDrop)="dropped($event)">
+        <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+            <mat-icon class="upload-icon">cloud_upload</mat-icon>
+            <p class="upload-text" *ngIf="!uploading">Drag and Drop Files Here to Upload</p>
+            <button mat-stroked-button *ngIf="!uploading"
+                    type="button" (click)="openFileSelector()">Or Select Files to Upload</button>
+            <div class="progress-wrapper" *ngIf="uploading">
+                <span class="progress-text">{{value}}%</span>
+                <mat-progress-spinner class="example-margin" [color]="color" [mode]="mode"
+                    [value]="value" [diameter]="90" [strokeWidth]="5">
+                </mat-progress-spinner>                    
+            </div>
+        </ng-template>
+    </ngx-file-drop>
+    <p [class.select-error]="extError" class="ext-select">Please select *.pdf, *.png, *jpg.</p>
+    
+    <form [formGroup]="fileForm" (ngSubmit)="onSubmit()"  enctype="multipart/form-data">
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Name" formControlName="fileName"
+                [errorStateMatcher]="matcher">
+            <mat-error *ngIf="myForm.fileName.hasError('required')">
+                File Name is required.
+            </mat-error>
+        </mat-form-field>
+
+        <div class="submit-wrapper">
+            <button mat-raised-button color="primary" class="upload-btn"
+                [disabled]="!fileForm.valid || !fileDropped || extError" type="submit">Upload</button>
+        </div>
+    </form>
+</div>

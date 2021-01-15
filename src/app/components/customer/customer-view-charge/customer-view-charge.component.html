@@ -1,0 +1,55 @@
+<h2>View Charges for  {{afm}}</h2>
+<h3>List of Fixed Charge
+<button mat-icon-button color="." (click)="addCharge('fixed')"><mat-icon>add_box</mat-icon></button></h3>
+<div class="charge_table">
+  <div class="fixed_table">
+    <div *ngIf="chargesFixed.length > 0">
+      <table mat-table [dataSource]="chargesFixed" class="mat-elevation-z8">
+        <ng-container matColumnDef="no">
+            <th mat-header-cell *matHeaderCellDef><b> No </b></th>
+            <td mat-cell *matCellDef="let row; let i = index;"> {{i+1}} </td>
+        </ng-container>
+        <ng-container matColumnDef="kaek">
+            <th mat-header-cell *matHeaderCellDef><b> Kaek</b> </th>
+            <td mat-cell *matCellDef="let element"> {{element.kaek}} </td>
+        </ng-container>
+        <ng-container matColumnDef="chargeDate">
+          <th mat-header-cell *matHeaderCellDef><b>Charge Date </b></th>
+          <td mat-cell *matCellDef="let element"> {{element.chargeDate}} </td>
+        </ng-container>
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef><b> Amount</b> </th>
+          <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+  <h3>List of Consumption Charge<button mat-icon-button color="." (click)="addCharge('consumption')"><mat-icon>add_box</mat-icon></button></h3>
+  <div class="consum_table">
+    <div *ngIf="chargesConsumption.length > 0">
+      <table mat-table [dataSource]="chargesConsumption" class="mat-elevation-z8">
+        <ng-container matColumnDef="no">
+            <th mat-header-cell *matHeaderCellDef><b>No</b></th>
+            <td mat-cell *matCellDef="let row; let i = index;"> {{i+1}} </td>
+        </ng-container>
+        <ng-container matColumnDef="kaek">
+            <th mat-header-cell *matHeaderCellDef> <b>kaek</b> </th>
+            <td mat-cell *matCellDef="let element"> {{element.kaek}} </td>
+        </ng-container>
+        <ng-container matColumnDef="chargeDate">
+          <th mat-header-cell *matHeaderCellDef><b> Charge Date </b></th>
+          <td mat-cell *matCellDef="let element"> {{element.chargeDate}} </td>
+        </ng-container>
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef><b>Amount</b></th>
+          <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div> 
+</div>  
+

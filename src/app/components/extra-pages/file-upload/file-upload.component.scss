@@ -1,0 +1,52 @@
+
+mat-icon.upload-icon{
+    font-size: 80px;
+    width: 80px;
+    height: 80px;
+    color: #00BCD4;
+}
+
+.upload-text{
+    color: #646464;
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.progress-wrapper{
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin: auto;
+    margin-top: 10px;
+    .progress-text{
+        position: absolute;
+        top: 33px;
+        display: block;
+        left: 18px;
+        font-size: 24px;
+    }
+}
+
+.ext-select{
+    margin-top: 5px;
+    color: #787878;
+}
+
+.select-error{
+    color: red;
+}
+
+form{
+    margin-top: 15px;
+    .full-width{
+        width: 100% !important;
+    }
+
+    .submit-wrapper{
+        display: flex;
+        justify-content: flex-end;
+        .upload-btn{
+            margin-right: 10px;
+        }
+    }
+}
